@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for Content'
+define service ZSD_FI_CONTENT_GJ {
+  expose ZC_CONTENT_GJ;
+}

@@ -1,0 +1,44 @@
+managed;
+//with draft;
+
+define behavior for ZI_PERNR_GJ //alias <alias_name>
+implementation in class zbp_i_pernr_gj unique
+persistent table yfi_ac_pernr_gj
+//draft table yfi_pernr_gj
+lock master
+//LastChangedAt
+authorization master ( global )
+etag master LocalLastChangedAt
+{
+  field ( readonly ) zcorgehname;
+
+  create;
+  update;
+  delete;
+
+  //  draft action Edit;
+  //  draft action Activate;
+  //  draft action Discard;
+  //  draft action Resume;
+  //  draft determine action Prepare;
+  mapping for yfi_ac_pernr_gj
+    {
+      zcpernrid          = zc_pernrid;
+      zcempname          = zc_emp_name;
+      zcorgehcode        = zc_orgehcode;
+      zchp               = zc_hp;
+      Attachment         = attachment;
+      MimeType           = mime_type;
+      FileName           = file_name;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+
+
+
+
+}

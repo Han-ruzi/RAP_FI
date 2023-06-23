@@ -1,0 +1,29 @@
+managed implementation in class zbp_i_company1_gj unique;
+strict ( 1 );
+
+define behavior for ZI_COMPANY1_GJ alias Company
+persistent table zfi_ac_company
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+//validation validateorgehcode on save { field zcorgehcode; create; }
+
+
+  //  field ( numbering : managed, readonly ) zcorgehcode;
+  mapping for zfi_ac_company
+    {
+      Zcorgehcode   = zc_orgehcode;
+      Zcorgehname   = zc_orgeh_name;
+
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
+
+}

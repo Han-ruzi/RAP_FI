@@ -1,0 +1,4 @@
+@EndUserText.label: 'FI_PERNR'
+define service ZSD_FI_PERNR_GJ {
+  expose ZC_PERNR_GJ;
+}

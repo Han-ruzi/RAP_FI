@@ -1,0 +1,94 @@
+@Metadata.layer: #CORE
+
+@UI: {
+ headerInfo: {
+    typeName: '결산 엑티비티 마스터',
+    typeNamePlural: '결산 엑티비티 마스터',
+  typeImageUrl: 'sap-icon://Master',
+  title: { type: #STANDARD, value: 'ZcGroupId'}
+//    ,
+//       title: {
+//            type: #STANDARD, value: 'ZcGUuid'
+//        },
+//        description: {
+//            value: 'ZcMUuid'
+//        }
+//      ,
+//      presentationVariant: [{
+//        sortOrder: [{
+//        by: 'ZcGroupId',
+//        direction: #ASC
+//      }] }]
+     }
+    }
+
+annotate view ZC_MASTER_GJ with
+{
+
+  @UI.facet: [
+                    {
+                 position: 5,
+                 purpose: #HEADER,
+                 label: 'Master',
+                 type: #FIELDGROUP_REFERENCE,
+                 targetQualifier: 'ACTIVITY'
+                  },
+                   {
+                     label: 'Activity Information',
+                     id: 'Activity',
+                     type: #COLLECTION,
+                     position: 10
+                   },
+                   {
+                     id: 'Activity1',
+                     purpose: #STANDARD,
+                     type: #FIELDGROUP_REFERENCE,
+                     parentId: 'Activity',
+                     label: 'Activity',
+                     position: 20,
+                     targetQualifier: 'Activity'
+                   }
+              ]
+
+
+
+  @UI.lineItem: [{ position: 30}]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [ { qualifier: 'Activity', position: 10} ]
+  @Search.defaultSearchElement: true
+  ZcGroupId;
+  @UI.textArrangement: #TEXT_LAST
+  @Search.defaultSearchElement: true
+  GroupName;
+
+  @UI.lineItem: [{ position: 40}]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.fieldGroup: [ { qualifier: 'Activity', position: 20} ]
+  @Search.defaultSearchElement: true
+  ZcAcId;
+
+  @UI.lineItem: [{ position: 50}]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.fieldGroup: [ { qualifier: 'ACTIVITY', position: 10},
+                    { qualifier: 'Activity', position: 30}
+   ]
+  @Search.defaultSearchElement: true
+  ZcAcTitle;
+
+  @UI.lineItem: [{ position: 70, criticality: 'ZcStatusCriticality' }]
+  @UI.fieldGroup: [ { qualifier: 'Activity', position: 40} ]
+  @Search.defaultSearchElement: true
+  @UI.textArrangement: #TEXT_ONLY
+  ZcStatus;
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  ZcUUID;
+}

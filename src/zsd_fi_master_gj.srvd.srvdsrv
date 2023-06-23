@@ -1,0 +1,4 @@
+@EndUserText.label: '결산 엑티비티 마스터 서비스'
+define service ZSD_FI_MASTER_GJ {
+  expose ZC_MASTER_GJ;
+}

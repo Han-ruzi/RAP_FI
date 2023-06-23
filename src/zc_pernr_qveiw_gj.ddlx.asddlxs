@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+
+
+annotate view ZC_PERNR_GJ with {
+@UI.facet: [
+  {
+    targetQualifier: 'Zc_Emp_Name',
+    type: #FIELDGROUP_REFERENCE,
+    purpose: #QUICK_VIEW
+  }
+]
+@UI.fieldGroup: [
+  {
+    label: '담당자',
+    value: 'ZcEmpName',
+    type: #STANDARD,
+    position: 4 ,
+    qualifier: 'Zc_Emp_Name'
+  }
+]
+ZcEmpName;
+//@UI.fieldGroup: [
+//  {
+//    label: 'Supplier',
+//    value: 'SUPPLIER',
+//    type: #STANDARD,
+//    position: 2 ,
+//    qualifier: 'SupplierQuickViewPOC_FieldGroup_1'
+//  }
+//]
+//supplier;
+//@UI.fieldGroup: [
+//  {
+//    label: 'Email Address',
+//    value: 'EMAILADDRESS',
+//    type: #STANDARD,
+//    position: 3 ,
+//    qualifier: 'SupplierQuickViewPOC_FieldGroup_1'
+//  }
+//]
+//emailaddress;
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: '결산 엑티비티 분류 서비스'
+define service ZSD_FI_GROUP_GJ {
+  expose ZC_FI_GROUP_GJ;
+}

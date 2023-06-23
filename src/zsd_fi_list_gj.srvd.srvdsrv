@@ -1,0 +1,4 @@
+@EndUserText.label: 'FI_Activity List Service'
+define service ZSD_FI_LIST_GJ {
+  expose ZC_LIST_GJ;
+}

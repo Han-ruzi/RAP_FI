@@ -1,0 +1,103 @@
+@Metadata.layer: #CORE
+
+@UI: {
+ headerInfo: {
+    typeName: '결산 엑티비티 분류',
+    typeNamePlural: '결산 엑티비티 분류',
+     imageUrl: 'Attachment',  //case-sensitive
+    description: { type: #STANDARD, value: 'ZcGroupId' }
+             }
+    }
+
+annotate view ZC_FI_GROUP_GJ with
+{
+
+  @UI.facet: [
+                   {
+                     label: 'Group Information',
+                     id: 'Group',                     
+                     type: #COLLECTION,
+                     position: 10
+                   }
+                   ,
+                   { 
+                 id: 'Group1',
+                 purpose: #STANDARD,
+                 parentId: 'Group',
+                 type : #FIELDGROUP_REFERENCE,
+                 label: 'Group',
+                 position: 20,
+                 targetQualifier: 'Group'
+                   },
+                   {
+                     position: 5,
+                     purpose: #HEADER,
+                     label: 'Group ID',
+                     type: #FIELDGROUP_REFERENCE,
+                     targetQualifier: 'GROUP'
+                  }
+             ]
+
+  @UI.lineItem: [{ position: 10}]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 10 },
+                   { qualifier: 'GROUP', position: 10 }
+  ]
+
+  ZcGroupId;
+  @UI.lineItem: [{ position: 20}]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 20 }]
+  ZcGroupName;
+  @UI.lineItem: [{ position: 30}]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 30 }]
+  ZcGroupType;
+  @UI.lineItem: [{ position: 40}]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 40 }]
+  ZcGroupLevel;
+  @UI.lineItem: [{ position: 50}]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 50 }]
+  ZcGroupParentId;
+  @UI.lineItem: [{ position: 60, criticality: 'ZcStatusCriticality'}]
+  @UI.selectionField: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  @Search.defaultSearchElement: true
+  @UI.textArrangement: #TEXT_ONLY
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 60 }]
+  ZcStatus;
+  
+ @UI.fieldGroup: [{ qualifier: 'Group', position: 70 }]
+  Attachment;
+
+ @UI.fieldGroup: [{ qualifier: 'Group', position: 80 }]
+  MimeType;
+
+ @UI.fieldGroup: [{ qualifier: 'Group', position: 90 }]
+  FileName;
+
+
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  ZcUUID;
+
+}

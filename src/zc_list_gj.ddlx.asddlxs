@@ -1,0 +1,223 @@
+@Metadata.layer: #CORE
+
+@UI: {
+ headerInfo: {
+    typeName: 'FI Activity List',
+    typeNamePlural: '결산 엑티비티 리스트',
+    typeImageUrl: 'sap-icon://List',
+    title: { type: #STANDARD, value: 'zccontentid'}
+    }
+}
+
+annotate view ZC_LIST_GJ with
+{
+
+  @UI.facet: [
+                {
+                 position: 5,
+                 purpose: #HEADER,
+                 label: 'List',
+                 type: #FIELDGROUP_REFERENCE,
+                 targetQualifier: 'LIST'
+                  },
+  {
+  label: 'List Information',
+  id: 'list',
+  type: #COLLECTION,
+  purpose: #STANDARD,
+  position: 10
+  },
+
+  {
+  label: 'List',
+  id: 'list1',
+  type: #FIELDGROUP_REFERENCE,
+  purpose: #STANDARD,
+  parentId: 'list',
+  position: 20,
+  targetQualifier: 'Group'
+  },
+
+  {
+  label: 'Contents',
+  id: 'list2',
+  type: #FIELDGROUP_REFERENCE,
+  purpose: #STANDARD,
+  parentId: 'list',
+  position: 10,
+  targetQualifier: 'Contents'
+  }
+  //,
+  //  {
+  //  label: 'Orgeh',
+  //  id: 'list3',
+  //  type: #FIELDGROUP_REFERENCE,
+  //  purpose: #STANDARD,
+  //  parentId: 'list',
+  //  position: 40,
+  //  targetQualifier: 'Orgeh'
+  //  },
+  //
+  //  {
+  //  label: 'Activity',
+  //  id: 'list4',
+  //  type: #FIELDGROUP_REFERENCE,
+  //  purpose: #STANDARD,
+  //  parentId: 'list',
+  //  position: 50,
+  //  targetQualifier: 'Activity'
+  //  },
+  //
+  //  {
+  //  label: 'Status',
+  //  id: 'list5',
+  //  type: #FIELDGROUP_REFERENCE,
+  //  purpose: #STANDARD,
+  //  parentId: 'list',
+  //  position: 50,
+  //  targetQualifier: 'Status'
+  //  }
+  ]
+
+
+
+  @UI: {  lineItem: [{ position: 10, label: '컨텐츠 ID' }],
+  //          identification: [ { position: 30, label: '컨텐츠 ID' } ],
+        selectionField: [ { position: 30 } ]
+  }
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 10 },
+                   { qualifier: 'LIST', position: 10 }
+  ]
+  @Consumption.valueHelpDefinition: [
+  { entity: { name: 'ZI_READ_CONTENTID_GJ', element: 'ZcContentId' },
+    additionalBinding: [{ element: 'ZcAcId',localElement: 'ZcAcId' ,usage: #RESULT },
+                        { element: 'ZcGroupId', localElement: 'ZcGroupId',usage: #RESULT },
+                        { element: 'ZcPernrId',localElement: 'ZcPernrId',usage: #RESULT },
+                        { element: 'ZcOrgehCode', localElement: 'ZcOrgehCode',usage: #RESULT},
+                        { element: 'zccycle', localElement: 'zccycle',usage: #RESULT },
+                        { element: 'zcday', localElement: 'zcday',usage: #RESULT},
+                        { element: 'zctcode',localElement: 'zctcode',usage: #RESULT }]
+  }]
+
+  zccontentid;
+
+  @UI: {  lineItem: [{ position: 20, label: '결산 Activity ID' }],
+         identification: [ { position: 20, label: '결산 Activity ID' } ],
+         selectionField: [ { position: 20 } ]
+         }
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 20 }]
+  ZcAcId;
+  @UI.textArrangement: #TEXT_LAST
+  ZcAcTitle;
+
+  @UI:   {lineItem: [{ position: 30, label: '그룹 ID' }]}
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 30 }]
+  ZcGroupId;
+  @UI.textArrangement: #TEXT_LAST
+  ZcGroupName;
+
+
+  @UI: {  lineItem: [{ position: 40, label: '부서코드' }],
+          identification: [ { position: 40, label: '부서코드' } ],
+          selectionField: [ { position: 40 } ]
+  }
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 40 }]
+  ZcOrgehCode;
+  @UI.textArrangement: #TEXT_LAST
+  zcorgehname;
+
+  @UI: {  lineItem: [{ position: 50, label: '담당자 사번' }],
+           identification: [ { position: 60, label: '담당자 사번' } ],
+           selectionField: [ { position: 60 } ]}
+  @Search.defaultSearchElement: true
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 50 },
+                   { qualifier: 'LIST', position: 20 }
+                  ]
+  ZcPernrId;
+  @UI.textArrangement: #TEXT_LAST
+  ZcEmpName;
+
+  @UI: {  lineItem: [{ position: 90, label: '결산주기' }],
+       identification: [ { position: 90, label: '결산주기' } ],
+       selectionField: [ { position: 90 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 60 }]
+  zccycle;
+
+  @UI: {  lineItem: [{ position: 100, label: '결산기한' }],
+       identification: [ { position: 100, label: '결산기한' } ],
+       selectionField: [ { position: 100 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 70 }]
+  zcday;
+
+  @UI: {  lineItem: [{ position: 110, label: '연결 TCODE' }],
+       identification: [ { position: 110, label: '연결 TCODE' } ],
+       selectionField: [ { position: 110 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Contents', position: 80 }]
+  zctcode;
+
+
+  // ----------------------------GROUP------------------------------
+
+  @UI: {  lineItem: [{ position: 80, label: '결산기간' }],
+         identification: [ { position: 80, label: '결산기간' } ],
+         selectionField: [ { position: 80 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 10 }]
+  zcspmon;
+
+
+  @UI: {  lineItem: [{ position: 120, label: '계획 완료일' }],
+     identification: [ { position: 120, label: '계획 완료일' } ],
+     selectionField: [ { position: 120 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 20 }]
+  zcplandate;
+
+  @UI: {  lineItem: [{ position: 130, label: '계획 완료시간' }],
+     identification: [ { position: 130, label: '계획 완료시간' } ],
+     selectionField: [ { position: 130 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 30 }]
+  zcplantime;
+
+  @UI: {  lineItem: [{ position: 140, label: '실제 완료일' }],
+     identification: [ { position: 140, label: '실제 완료일' } ],
+     selectionField: [ { position: 140 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 40 }]
+  zcactuallydate;
+
+  @UI: {  lineItem: [{ position: 150, label: '실제 완료시간' }],
+     identification: [ { position: 150, label: '실제 완료시간' } ],
+     selectionField: [ { position: 150 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 50 }]
+  zcactuallytime;
+
+  @UI: {  lineItem: [{ position: 160, label: '상태', criticality: 'ZcStatusCriticality' }],
+              identification: [ { position: 160, label: '상태' } ],
+              selectionField: [ { position: 160 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'Group', position: 60 }]
+  @UI.textArrangement: #TEXT_ONLY
+  ZcStatus;
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  ZcUUID;
+
+}

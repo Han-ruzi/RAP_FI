@@ -1,0 +1,214 @@
+@Metadata.layer: #CORE
+
+@UI: {
+ headerInfo: 
+  {
+    typeName: 'FI Activity PERNR',
+    typeNamePlural: 'FI Activity',
+    imageUrl: 'Attachment',  //case-sensitive
+    description: { type: #STANDARD, value: 'ZcPernrId' }
+  }
+  }
+
+annotate view ZC_PERNR_GJ with
+{
+
+//  @UI.facet: [
+//                {
+//                 position: 5,
+//                 purpose: #HEADER,
+//                 label: 'Pernr',
+//                 type: #FIELDGROUP_REFERENCE,
+//                 targetQualifier: 'PERNR'
+//                  },
+//
+//                     {
+//                       label: 'Pernr Information',
+//                       id: 'Pernr',
+//                       type: #COLLECTION,
+//                       position: 10
+//                     },
+//                     {
+//                       id: 'PERNR1',
+//                       purpose: #STANDARD,
+//                       type: #FIELDGROUP_REFERENCE,
+//                       parentId: 'Pernr',
+//                       label: 'Pernr',
+//                       position: 20,
+//                       targetQualifier: 'Pernr'
+//                     }
+//                       ,
+//                       {
+//                          purpose: #QUICK_VIEW,
+//                          type: #FIELDGROUP_REFERENCE,
+//                          label: 'Additional Details',
+//                          targetQualifier: 'Zc_Emp_Name'
+//
+//
+//                       }
+//                ]
+
+ @UI.facet: [ {
+    id: 'idIdentification',
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Travel',
+    position: 10
+  } ]
+
+//  @UI:   {
+//  lineItem: [{
+//                position: 10,
+//                label: '담당자 사번'
+//                }],
+//
+//  identification: [ { position: 10, label: '담당자 사번' } ],
+//  selectionField: [ { position: 10 } ]
+//  }
+//  @Search.defaultSearchElement: true
+//  @UI.fieldGroup: [{
+//                    qualifier: 'Pernr',
+//                    position: 10}
+  //                    ,
+  //                    {
+  //    label: 'Phone Number',
+  //    value: 'ZcEmpName',
+  //    type: #STANDARD,
+  //    position: 1 ,
+  //    qualifier: 'SupplierQuickViewPOC_Pernr_1'
+  //  }
+//                    ]
+  @UI.lineItem: [ {
+    position: 10 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 10 ,
+    label: ''
+  } ]
+  @UI.selectionField: [{ position: 10 }]
+  ZcPernrId;
+
+  @Consumption.semanticObject: 'ZcEmpName'
+  //  @UI: {  lineItem: [{ position: 20,
+  //                       label: '담당자'
+  //                       ,
+  //                       type: #WITH_INTENT_BASED_NAVIGATION,
+  //                       semanticObjectAction: 'show' ,
+  //                       requiresContext: true
+  //  }],
+//  @UI : { identification: [ { position: 20, label: '담당자' } ],
+//    selectionField: [ { position: 20 } ]}
+//  @UI.fieldGroup: [
+////  { qualifier: 'PERNR', position: 20 },
+//                   { qualifier: 'Pernr', position: 20 }
+//  ]
+  @Search.defaultSearchElement: true
+    @UI.lineItem: [ {
+    position: 20 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 20 ,
+    label: ''
+  } ]
+  @UI.selectionField: [{ position: 10 }]
+  ZcEmpName;
+
+//  @UI:   {lineItem: [{ position: 30, label: '부서 코드' }],
+//    selectionField: [ { position: 30 } ]
+//  }
+//  @UI.fieldGroup: [{ qualifier: 'Pernr', position: 30 }]
+  @UI.lineItem: [ {
+    position: 30 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 30 ,
+    label: ''
+  } ]
+  @UI.selectionField: [{ position: 10 }]
+  @Search.defaultSearchElement: true
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'ZI_READ_ORGEH_GJ', element: 'ZcOrgehCode' },
+                                        additionalBinding: [{ element: 'zcorgehname', localElement: 'zcorgehname', usage: #RESULT }] }]
+  ZcOrgehCode;
+
+//  @UI:   {lineItem: [{ position: 40, label: '부서 명' }],
+//    selectionField: [ { position: 40 } ]
+//  }
+//  @UI.fieldGroup: [{ qualifier: 'Pernr', position: 40 }]
+  @UI.lineItem: [ {
+    position: 40 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 40 ,
+    label: ''
+  } ]
+  @UI.selectionField: [{ position: 40 }]
+  zcorgehname;
+
+  //    @UI.identification: [
+  //      {
+  //        importance: #HIGH,
+  //        label: '휴대폰 번호',
+  //        type: #FOR_INTENT_BASED_NAVIGATION,
+  //        semanticObjectAction: 'display',
+  //        position: 1
+  //      }
+  //    ]
+
+  //  @Consumption.semanticObject: 'Zchp'
+  //  @UI.fieldGroup: [{ qualifier: 'Zc_Emp_Name',
+  //                     position: 10,
+  //                     label: 'HP',
+  //                     type: #STANDARD
+  //                      }]
+  //  Zchp;
+
+  @UI.lineItem: [ {
+    position: 50 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 50 ,
+    label: ''
+  } ]
+  Attachment;
+
+  @UI.lineItem: [ {
+    position: 60 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 60 ,
+    label: ''
+  } ]
+  MimeType;
+
+  @UI.lineItem: [ {
+    position: 70 ,
+    importance: #MEDIUM,
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 70 ,
+    label: ''
+  } ]
+  FileName;
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+
+}

@@ -1,0 +1,43 @@
+managed;
+with draft;
+
+define behavior for ZI_LIST_GJ //alias <alias_name>
+implementation in class zbp_i_list_gj unique
+persistent table yfi_ac_list_gj
+draft table yfi_dflist_gj
+lock master total etag LastChangedAt
+authorization master ( global )
+etag master LocalLastChangedAt
+{
+  field ( numbering : managed ) ZcUUID;
+
+  create;
+  update;
+  delete;
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  validation Check_value_key on save { create; update; field zccontentid; }
+
+  determination initStatus on modify { create; }
+  mapping for yfi_ac_list_gj
+    {
+      ZcUUID             = zc_uuid_id;
+      zccontentid        = zc_content_id;
+      zcspmon            = zc_spmon;
+      zcplantime         = zc_plan_time;
+      zcplandate         = zc_plan_date;
+      zcactuallydate     = zc_actually_date;
+      zcactuallytime     = zc_actually_time;
+      zcstatus           = zc_status;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}

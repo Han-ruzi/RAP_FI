@@ -1,0 +1,70 @@
+@Metadata.layer: #PARTNER
+
+@UI: {
+    headerInfo:
+
+                {
+                  typeName: 'FI Activity Company',
+                  typeNamePlural: 'Company',
+                  typeImageUrl: 'sap-icon://Orgeh',
+                  title: { type: #STANDARD,
+                           label: 'Company'
+                           ,
+                           value: 'zcorgehcode'
+                         }
+    }}
+annotate view ZC_COMPANY1_GJ with
+{
+
+  @UI.facet: [
+              {
+                     position: 5,
+                     purpose: #HEADER,
+                     label: 'Orgeh Name',
+                     type: #FIELDGROUP_REFERENCE,
+                     targetQualifier: 'ORGEH'
+               }
+                   ,
+                   {
+                     label: 'Orgeh Information',
+                     id: 'Company',
+                     type: #COLLECTION,
+                     position: 10
+                   },
+                { 
+                 id: 'Company1',
+                 purpose: #STANDARD,
+                 parentId: 'Company',
+                 type : #FIELDGROUP_REFERENCE,
+                 label: 'Orgeh',
+                 position: 20,
+                 targetQualifier: 'Orgeh'
+  } ]
+
+  @UI: {  lineItem: [{ position: 10, label: '부서 코드' }],
+          identification: [ { position: 10, label: '부서 코드' } ],
+          selectionField: [ { position: 10 } ]}
+           @UI.fieldGroup: [ { qualifier: 'Orgeh', position: 10} ]
+  zcorgehcode;
+
+
+  @UI: {  lineItem: [{ position: 20, label: '부서명' }],
+          identification: [ { position: 20, label: '부서명' } ],
+          selectionField: [ { position: 20 } ]
+  }
+  @UI.fieldGroup: [{ qualifier: 'ORGEH', position: 10 },
+                   { qualifier: 'Orgeh', position: 20 }
+  ]
+  zcorgehname;
+
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+
+}

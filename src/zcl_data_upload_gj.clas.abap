@@ -1,0 +1,141 @@
+CLASS zcl_data_upload_gj DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    INTERFACES if_oo_adt_classrun.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_data_upload_gj IMPLEMENTATION.
+
+  METHOD if_oo_adt_classrun~main.
+
+    DATA itab_GROUP TYPE TABLE OF yfi_ac_group_gj.
+
+
+* ----------------------------GROUP-----------------------------------
+    itab_GROUP = VALUE #(
+( client = '100' zc_uuid_id = '229C33EF1B0A1EEDBED81D42E1149447' zc_group_id = 'FI11' zc_group_name = '영업비용' zc_group_type = 'FI' zc_group_level = '3' zc_group_parent_id = 'FI01' zc_status = 'Y'
+created_by = 'CB9980000206' created_at = '20230525055659.6175200 ' last_changed_by = 'CB9980000206' last_changed_at = '20230620044450.9881980 '  local_last_changed_at = '20230620044450.9881980 '  )
+( client = '100' zc_uuid_id = '6A8FC8129C6F1EDDBED81B3AEC9ACD83' zc_group_id = 'FI01' zc_group_name = '결산마감' zc_group_type = 'FI' zc_group_level = '2' zc_group_parent_id = 'FI01' zc_status = 'Y'
+created_by = 'CB9980000206' created_at = '20230525055635.1639610 ' last_changed_by = 'CB9980000206' last_changed_at = '20230525055635.1639610 ' local_last_changed_at = '20230525055635.1639610 '  )
+( client = '100' zc_uuid_id = '229C33EF1B0A1EEDBED8220EDA50344D' zc_group_id = 'FI12' zc_group_name = '자산' zc_group_type = 'FI' zc_group_level = '3' zc_group_parent_id = 'FI01' zc_status = 'Y'
+created_by = 'CB9980000206' created_at = '20230525055805.2790890 ' last_changed_by = 'CB9980000206' last_changed_at = '20230525055805.2790890 ' local_last_changed_at = '20230525055805.2790890 '  )
+( client = '100' zc_uuid_id = '229C33EF1B0A1EEDBED8256EB6B7545D' zc_group_id = 'FI13' zc_group_name = '기부금' zc_group_type = 'FI' zc_group_level = '3' zc_group_parent_id = 'FI01' zc_status = 'Y'
+created_by = 'CB9980000206' created_at = '20230525055852.4094490 ' last_changed_by = 'CB9980000206' last_changed_at = '20230525055852.4094490 ' local_last_changed_at = '20230525055852.4094490 '  )
+( client = '100' zc_uuid_id = '229C33EF1B0A1EEDBED827C3A74E5461' zc_group_id = 'FI14' zc_group_name = '결산조정' zc_group_type = 'FI' zc_group_level = '3' zc_group_parent_id = 'FI01'  zc_status = 'Y'
+created_by = 'CB9980000206' created_at = '20230525055922.9158350 ' last_changed_by = 'CB9980000206' last_changed_at = '20230525055922.9158350 ' local_last_changed_at = '20230525055922.9158350 '  )
+ ).
+
+    DELETE FROM yfi_ac_group_gj.
+    INSERT yfi_ac_group_gj FROM TABLE @itab_GROUP.
+    out->write( |{ sy-dbcnt } Group! | ).
+
+*----------------------------------------------------------------------
+
+* ----------------------------Master-----------------------------------
+    DATA itab_master TYPE TABLE OF yfi_ac_master_gj.
+
+    itab_master = VALUE #(
+( client = '100' zc_uuid_id = '6A8FC8129C6F1EDDBED88B25C2C24E4D' zc_group_id = 'FI11' zc_ac_id = 'C017' zc_ac_title = '일반비용' zc_status = 'Y' created_by = 'CB9980000206' created_at = '20230525063246.6880240 ' last_changed_by = 'CB9980000206'
+last_changed_at = '20230525070813.5186630 ' local_last_changed_at = '20230525070813.5186630 '  )
+( client = '100' zc_uuid_id = '6A8FC8129C6F1EEDBFD095806A8ACD52' zc_group_id = 'FI11' zc_ac_id = 'C018' zc_ac_title = '내부거래' zc_status = 'Y' created_by = 'CB9980000206' created_at = '20230530005606.8012700 ' last_changed_by = 'CB9980000206'
+last_changed_at = '20230530005640.5844580 ' local_last_changed_at = '20230530005640.5844580 '  )
+( client = '100' zc_uuid_id = '6A8FC8129C6F1EEDBFD0A5E9C06ACD6D' zc_group_id = 'FI11' zc_ac_id = 'C016' zc_ac_title = '법인카드' zc_status = 'Y' created_by = 'CB9980000206' created_at = '20230530005934.8068940 ' last_changed_by = 'CB9980000206'
+last_changed_at = '20230530011139.0967250 ' local_last_changed_at = '20230530011139.0967250 '  )
+( client = '100' zc_uuid_id = '229C33EF1B0A1EDDBFD0A1C81C541518' zc_group_id = 'FI13' zc_ac_id = 'D121' zc_ac_title = '영수증 수취 및 기표' zc_status = 'Y' created_by = 'CB9980000206' created_at = '20230530005847.8240380 ' last_changed_by = 'CB9980000206'
+last_changed_at = '20230530011155.8252450 ' local_last_changed_at = '20230530011155.8252450 '  )
+( client = '100' zc_uuid_id = '229C33EF1B0A1EDDBFD09B5EB3F65512' zc_group_id = 'FI12' zc_ac_id = 'A001' zc_ac_title = '금융자산 잔고확인서 점검' zc_status = 'Y' created_by = 'CB9980000206' created_at = '20230530005810.2801790 ' last_changed_by = 'CB9980000206'
+last_changed_at = '20230530011209.0679650 ' local_last_changed_at = '20230530011209.0679650 '  )
+ ).
+
+    DELETE FROM  yfi_ac_master_gj.
+    INSERT  yfi_ac_master_gj FROM TABLE @itab_master.
+    out->write( |{ sy-dbcnt } Master! | ).
+
+*----------------------------------------------------------------------
+
+* ----------------------------Content-------------------------------------
+    DATA itab_content TYPE TABLE OF yfi_ac_content.
+
+    itab_content  = VALUE #(
+( CLIENT = '100' ZC_UUID_ID = '229C33EF1B0A1EEDBED8C4167D8495E4' ZC_CONTENT_ID = '급여' ZC_AC_ID = 'C017' ZC_ORGEH_CODE = '' ZC_PERNR_ID = 'IT1765' ZC_CYCLE = '1' ZC_DAY = '2' ZC_TCODE = 'x' ZC_STATUS = 'Y' CREATED_BY = 'CB9980000206'
+CREATED_AT = '20230525064049.4888100 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230525064049.4888100 ' LOCAL_LAST_CHANGED_AT = '20230525064049.4888100 '  )
+( CLIENT = '100' ZC_UUID_ID = '6A8FC8129C6F1EEDBFD0E3C9577ECDD2' ZC_CONTENT_ID = '내부거래' ZC_AC_ID = 'C018' ZC_ORGEH_CODE = '' ZC_PERNR_ID = 'IT1946' ZC_CYCLE = '3' ZC_DAY = '2' ZC_TCODE = 'x' ZC_STATUS = 'Y' CREATED_BY = 'CB9980000206'
+CREATED_AT = '20230530011415.7133530 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230530011415.7133530 ' LOCAL_LAST_CHANGED_AT = '20230530011415.7133530 '  )
+( CLIENT = '100' ZC_UUID_ID = '6A8FC8129C6F1EEDBFD0EBA637F60DD9' ZC_CONTENT_ID = '영수증 수취 및 기표' ZC_AC_ID = 'D121' ZC_ORGEH_CODE = '' ZC_PERNR_ID = 'IT1944' ZC_CYCLE = '2' ZC_DAY = '4' ZC_TCODE = 'SE80' ZC_STATUS = 'Y' CREATED_BY = 'CB9980000206'
+CREATED_AT = '20230530011513.8070690 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230530011513.8070690 ' LOCAL_LAST_CHANGED_AT = '20230530011513.8070690 '  )
+( CLIENT = '100' ZC_UUID_ID = '229C33EF1B0A1EDDBFD0EE12D45475A1' ZC_CONTENT_ID = '법인카드' ZC_AC_ID = 'C016' ZC_ORGEH_CODE = '' ZC_PERNR_ID = 'IT2100' ZC_CYCLE = '1' ZC_DAY = '1' ZC_TCODE = 'x' ZC_STATUS = 'Y' CREATED_BY = 'CB9980000206'
+CREATED_AT = '20230530011541.1957310 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230530011541.1957310 ' LOCAL_LAST_CHANGED_AT = '20230530011541.1957310 '  )
+( CLIENT = '100' ZC_UUID_ID = '6A8FC8129C6F1EEDBFD14E7C99B60E73' ZC_CONTENT_ID = '금융자산' ZC_AC_ID = 'A001' ZC_ORGEH_CODE = '' ZC_PERNR_ID = 'IT2100' ZC_CYCLE = '5' ZC_DAY = '5' ZC_TCODE = 'x' ZC_STATUS = 'Y' CREATED_BY = 'CB9980000206'
+CREATED_AT = '20230530013719.5223560 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230530013719.5223560 ' LOCAL_LAST_CHANGED_AT = '20230530013719.5223560 '  )
+ ).
+
+    DELETE FROM yfi_ac_content.
+    INSERT yfi_ac_content FROM TABLE @itab_content .
+    out->write( |{ sy-dbcnt } List! | ).
+
+*----------------------------------------------------------------------
+
+
+* ----------------------------LIST-------------------------------------
+    DATA itab_list TYPE TABLE OF yfi_ac_list_gj.
+
+    itab_list  = VALUE #(
+( CLIENT = '100' ZC_UUID_ID = '229C33EF1B0A1EEDBED96899D58CD77D' ZC_CONTENT_ID = '급여' ZC_SPMON = '000002' ZC_PLAN_DATE = '20230525' ZC_PLAN_TIME = '000000' ZC_ACTUALLY_DATE = '20230525' ZC_ACTUALLY_TIME = '000000' ZC_STATUS = 'Y'
+CREATED_BY = 'CB9980000206' CREATED_AT = '20230525071104.3663590 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230525072634.1229960 ' LOCAL_LAST_CHANGED_AT = '20230525072634.1229960 '  )
+( CLIENT = '100' ZC_UUID_ID = '6A8FC8129C6F1EEDBFD0F60E81DF0DF1' ZC_CONTENT_ID = '영수증 수취 및 기표' ZC_SPMON = '000001' ZC_PLAN_DATE = '20230530' ZC_PLAN_TIME = '000000' ZC_ACTUALLY_DATE = '20230530' ZC_ACTUALLY_TIME = '000000' ZC_STATUS = 'Y'
+CREATED_BY = 'CB9980000206' CREATED_AT = '20230530011725.5418150 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230530011725.5418150 ' LOCAL_LAST_CHANGED_AT = '20230530011725.5418150 '  )
+( CLIENT = '100' ZC_UUID_ID = '6A8FC8129C6F1EEDBFD1514497016E75' ZC_CONTENT_ID = '법인카드' ZC_SPMON = '000003' ZC_PLAN_DATE = '20230529' ZC_PLAN_TIME = '000000' ZC_ACTUALLY_DATE = '20230530' ZC_ACTUALLY_TIME = '000000' ZC_STATUS = 'Y'
+CREATED_BY = 'CB9980000206' CREATED_AT = '20230530013749.5437610 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230530013749.5437610 ' LOCAL_LAST_CHANGED_AT = '20230530013749.5437610 '  )
+( CLIENT = '100' ZC_UUID_ID = '6A8FC8129C6F1EEDBFD1530E33D88E76' ZC_CONTENT_ID = '금융자산' ZC_SPMON = '000005' ZC_PLAN_DATE = '20230530' ZC_PLAN_TIME = '000000' ZC_ACTUALLY_DATE = '20230530' ZC_ACTUALLY_TIME = '000000' ZC_STATUS = 'Y'
+CREATED_BY = 'CB9980000206' CREATED_AT = '20230530013811.9530660 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230530013811.9530660 ' LOCAL_LAST_CHANGED_AT = '20230530013811.9530660 '  )
+( CLIENT = '100' ZC_UUID_ID = '229C33EF1B0A1EDDBFD0F825972DD5BB' ZC_CONTENT_ID = '내부거래' ZC_SPMON = '000003' ZC_PLAN_DATE = '20230530' ZC_PLAN_TIME = '000000' ZC_ACTUALLY_DATE = '20230530' ZC_ACTUALLY_TIME = '000000' ZC_STATUS = 'Y'
+CREATED_BY = 'CB9980000206' CREATED_AT = '20230530011745.5436520 ' LAST_CHANGED_BY = 'CB9980000206' LAST_CHANGED_AT = '20230621063013.6095240 ' LOCAL_LAST_CHANGED_AT = '20230621063013.6095240 '  )
+ ).
+
+    DELETE FROM yfi_ac_list_gj.
+    INSERT yfi_ac_list_gj FROM TABLE @itab_list .
+    out->write( |{ sy-dbcnt } List! | ).
+
+*----------------------------------------------------------------------
+
+
+* ----------------------------pernr-------------------------------------
+    DATA itab_pernr TYPE TABLE OF yfi_ac_pernr_gj.
+
+    itab_pernr  = VALUE #(
+( CLIENT = '100' ZC_PERNRID = 'IT1946' ZC_EMP_NAME = '진광민' ZC_ORGEHCODE = 'FI22' ZC_HP = '0' CREATED_BY = 'CB9980000206' CREATED_AT = '20230620043545.6135570 ' LAST_CHANGED_BY = 'CB9980000206'
+LAST_CHANGED_AT = '20230620043545.6135570 ' LOCAL_LAST_CHANGED_AT = '20230620043545.6135570 '  )
+( CLIENT = '100' ZC_PERNRID = 'IT1765' ZC_EMP_NAME = '임재원' ZC_ORGEHCODE = 'FI33' ZC_HP = '0' CREATED_BY = 'CB9980000206' CREATED_AT = '20230620043608.5367850 ' LAST_CHANGED_BY = 'CB9980000206'
+LAST_CHANGED_AT = '20230620043608.5367850 ' LOCAL_LAST_CHANGED_AT = '20230620043608.5367850 '  )
+( CLIENT = '100' ZC_PERNRID = 'IT1944' ZC_EMP_NAME = '조민준' ZC_ORGEHCODE = 'FI22' ZC_HP = '0' CREATED_BY = 'CB9980000206' CREATED_AT = '20230620043631.2800780 ' LAST_CHANGED_BY = 'CB9980000206'
+LAST_CHANGED_AT = '20230620043631.2800780 ' LOCAL_LAST_CHANGED_AT = '20230620043631.2800780 '  )
+( CLIENT = '100' ZC_PERNRID = 'IT2100' ZC_EMP_NAME = '이시우' ZC_ORGEHCODE = 'FI11' ZC_HP = '0' CREATED_BY = 'CB9980000206' CREATED_AT = '20230620043646.9211670 ' LAST_CHANGED_BY = 'CB9980000206'
+LAST_CHANGED_AT = '20230620043646.9211670 ' LOCAL_LAST_CHANGED_AT = '20230620043646.9211670 '  )
+( CLIENT = '100' ZC_PERNRID = 'IT1945' ZC_EMP_NAME = '한익환' ZC_ORGEHCODE = 'FI11' ZC_HP = '0' CREATED_BY = 'CB9980000206' CREATED_AT = '20230620043715.6097760 ' LAST_CHANGED_BY = 'CB9980000206'
+LAST_CHANGED_AT = '20230620043715.6097760 ' LOCAL_LAST_CHANGED_AT = '20230620043715.6097760 '  )
+( CLIENT = '100' ZC_PERNRID = 'IT2432' ZC_EMP_NAME = '김상진' ZC_ORGEHCODE = 'FI33' ZC_HP = '0' CREATED_BY = 'CB9980000206' CREATED_AT = '20230621022212.7912950 ' LAST_CHANGED_BY = 'CB9980000206'
+LAST_CHANGED_AT = '20230621022212.7912950 ' LOCAL_LAST_CHANGED_AT = '20230621022212.7912950 '  )
+ ).
+
+    DELETE FROM yfi_ac_pernr_gj.
+    INSERT yfi_ac_pernr_gj FROM TABLE @itab_pernr .
+    out->write( |{ sy-dbcnt } List! | ).
+
+*----------------------------------------------------------------------
+
+
+
+
+
+
+
+  ENDMETHOD.
+
+ENDCLASS.

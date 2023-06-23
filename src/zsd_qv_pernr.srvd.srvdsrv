@@ -1,0 +1,4 @@
+@EndUserText.label: 'Quick View'
+define service ZSD_QV_PERNR {
+  expose ZI_QV_PERNR;
+}

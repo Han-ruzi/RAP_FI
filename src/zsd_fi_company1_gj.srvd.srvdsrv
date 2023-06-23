@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for Company'
+define service ZSD_FI_COMPANY1_GJ {
+  expose ZC_COMPANY1_GJ;
+}
